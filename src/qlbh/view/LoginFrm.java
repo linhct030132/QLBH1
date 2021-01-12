@@ -123,6 +123,7 @@ public class LoginFrm extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         MainFrm main = new MainFrm();
+        this.dispose();
         String userName = username.getText();
         String passWord = password.getText();
         if(userName.equals("") && passWord.equals("")){

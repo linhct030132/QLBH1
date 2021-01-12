@@ -15,5 +15,5 @@ import qlbh.model.HangHoa;
 public interface HangHoaServices {
      public List<HangHoa> getList();
     
-    public int createOrUpdate(HangHoa hh);
+    public String createOrUpdate(HangHoa hh);
 }

@@ -241,6 +241,7 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="cbTinhTrang">
           <Properties>
+            <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="K&#xed;ch Ho&#x1ea1;t"/>
           </Properties>
         </Component>

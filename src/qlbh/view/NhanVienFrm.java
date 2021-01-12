@@ -29,8 +29,6 @@ public class NhanVienFrm extends javax.swing.JFrame {
     private NhanVienFrm() {
     }
 
-  
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -100,6 +98,7 @@ public class NhanVienFrm extends javax.swing.JFrame {
         jrdNam.setSelected(true);
         jrdNam.setText("Nam");
 
+        cbTinhTrang.setSelected(true);
         cbTinhTrang.setText("Kích Hoạt");
 
         jtaDiaChi.setColumns(20);

@@ -15,5 +15,8 @@ import qlbh.model.NhanVien;
 public interface NhanVienServices {
     public List<NhanVien> getList();
     
-    public int createOrUpdate(NhanVien nv);
+    public String createOrUpdate(NhanVien nv);
+    
+    public String delete(NhanVien nv);
+
 }

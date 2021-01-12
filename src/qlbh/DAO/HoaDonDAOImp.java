@@ -10,8 +10,11 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import qlbh.controller.ConnectToSQL;
 import qlbh.model.HoaDon;
 
@@ -19,21 +22,22 @@ import qlbh.model.HoaDon;
  *
  * @author Steven
  */
-public class HoaDonDAOImp implements HoaDonDAO{
-
-    @Override
+public class HoaDonDAOImp extends HoaDonDAO{
+    Connection conn = ConnectToSQL.getConnection();
     public List<HoaDon> getList() {
         try {
-            Connection conn = ConnectToSQL.getConnection();
             String sql = "Select * from tb_HoaDon";
             List<HoaDon> list = new ArrayList<>();
             PreparedStatement ps = (PreparedStatement) conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 HoaDon hd = new HoaDon();
-                hd.setMaHD(rs.getInt("MaHD"));
-                hd.setNgayLap(rs.getDate("Date"));
-                hd.setThanhTien(rs.getDouble("ThanhTien"));
+                hd.setMaHD(rs.getString("MaHD"));
+                hd.setMaKH(rs.getString("MaKH"));
+                hd.setMaNV(rs.getString("MaNV"));
+                hd.setNgayLapHD(rs.getDate("NgayLapHD"));
+                hd.setSoHoaDon(rs.getInt("SoHoaDon"));
+                hd.setTongTien(rs.getInt("TongTien"));
                 list.add(hd);
             }
             ps.close();
@@ -45,29 +49,56 @@ public class HoaDonDAOImp implements HoaDonDAO{
         }
         return null;
     }
+    
+     
+    
+    
 
-    @Override
-    public int createOrUpdate(HoaDon hd) {
-        try {
-            Connection conn = ConnectToSQL.getConnection();
-            String sql = "INSERT INTO tb_HoaDon(MaHD, NgayLap, ThanhTien) "
-                    + "VALUES(?, ?, ?)   ";
-            PreparedStatement ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setDate(1, (Date) hd.getNgayLap());
-            ps.setDouble(2, hd.getThanhTien());
+//    @Override
+   public String createOrUpdate(HoaDon hd) {
+       try {
+           String sql = "INSERT INTO tb_HoaDon(MaHD, NgayDat, ThanhTien) "
+                   + "VALUES(?, ?, ?)   ";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1,hd.getMaHD());
+            ps.setString(2, hd.getMaKH());
+            ps.setString(3, hd.getMaNV());
+            ps.setDate(4, new Date(hd.getNgayLapHD().getTime()));
+            ps.setInt(5, hd.getSoHoaDon());
+            ps.setInt(6, hd.getTongTien());
             ps.execute();
-            ResultSet rs = ps.getGeneratedKeys();
-            int generatedKey = 0;
-            if (rs.next()) {
-                generatedKey = rs.getInt(1);
+           ps.close();
+            conn.close();
+        } catch (Exception ex) {
+           ex.printStackTrace();
+       }
+        return null;
+    }
+  
+   public ArrayList<HoaDon> findByDate(String Date) {
+       ArrayList<HoaDon> list = new ArrayList<>();
+       String sql = "SELECT * FROM tb_HoaDon WHERE NgayLap LIKE ? ";
+       try {
+           PreparedStatement ps = conn.prepareStatement(sql);
+           ps.setString(1, "%" + Date + "%");
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+               HoaDon hd = new HoaDon();
+                hd.setMaHD(rs.getString("MaHD"));
+                hd.setNgayLapHD(rs.getDate("NgayLapHD"));
+                hd.setTongTien(rs.getInt("TongTien"));
+                list.add(hd);
             }
             ps.close();
             conn.close();
-            return generatedKey;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return 0;
-    }
+            rs.close();
+            return list;
+       } catch (Exception e) {
+          e.printStackTrace();
+           System.out.println("true");
+       }
+       return null;
+   }
+
     
 }

@@ -10,18 +10,29 @@ package qlbh.model;
  * @author Steven
  */
 public class ChiTietHD {
-    String MaHD, MaHang;
+    String MaChiTietHD;
+    String MaHD;
+    String MaHang;
     int SoLuong;
-    Double DonGia;
+    double ThanhTien;
 
-    public ChiTietHD(String MaHD, String MaHang, int SoLuong, Double DonGia) {
+    public ChiTietHD() {
+    }
+
+    public ChiTietHD(String MaChiTietHD, String MaHD, String MaHang, int SoLuong, double ThanhTien) {
+        this.MaChiTietHD = MaChiTietHD;
         this.MaHD = MaHD;
         this.MaHang = MaHang;
         this.SoLuong = SoLuong;
-        this.DonGia = DonGia;
+        this.ThanhTien = ThanhTien;
     }
 
-    public ChiTietHD() {
+    public String getMaChiTietHD() {
+        return MaChiTietHD;
+    }
+
+    public void setMaChiTietHD(String MaChiTietHD) {
+        this.MaChiTietHD = MaChiTietHD;
     }
 
     public String getMaHD() {
@@ -48,18 +59,13 @@ public class ChiTietHD {
         this.SoLuong = SoLuong;
     }
 
-    public Double getDonGia() {
-        return DonGia;
+    public double getThanhTien() {
+        return ThanhTien;
     }
 
-    public void setDonGia(Double DonGia) {
-        this.DonGia = DonGia;
+    public void setThanhTien(double ThanhTien) {
+        this.ThanhTien = ThanhTien;
     }
 
-    @Override
-    public String toString() {
-        return "ChiTietHD{" + "MaHD=" + MaHD + ", MaHang=" + MaHang + ", SoLuong=" + SoLuong + ", DonGia=" + DonGia + '}';
-    }
-    
-    
+   
 }

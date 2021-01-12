@@ -6,7 +6,6 @@
 package qlbh.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  *
@@ -14,30 +13,32 @@ import java.util.Date;
  */
 public class HangHoa implements Serializable{
 
-    private int MaHang;
+    private String MaHang;
     private String TenHang;
-    private Date NgaySuDung;
-    private Date HanSuDung;
-    private String XuatSu;
-    private Double GiaBan;
+    private String LoaiSanPham;
+    private int GiaNhap;
+    private int GiaBan;
+    private String NhaCungCap;
+    private int SoLuong;
 
     public HangHoa() {
     }
 
-    public HangHoa(int MaHang, String TenHang, Date NgaySuDung, Date HanSuDung, String XuatSu, Double GiaBan) {
+    public HangHoa(String MaHang, String TenHang, String LoaiSanPham, int GiaNhap, int GiaBan, String NhaCungCap, int SoLuong) {
         this.MaHang = MaHang;
         this.TenHang = TenHang;
-        this.NgaySuDung = NgaySuDung;
-        this.HanSuDung = HanSuDung;
-        this.XuatSu = XuatSu;
+        this.LoaiSanPham = LoaiSanPham;
+        this.GiaNhap = GiaNhap;
         this.GiaBan = GiaBan;
+        this.NhaCungCap = NhaCungCap;
+        this.SoLuong = SoLuong;
     }
 
-    public int getMaHang() {
+    public String getMaHang() {
         return MaHang;
     }
 
-    public void setMaHang(int MaHang) {
+    public void setMaHang(String MaHang) {
         this.MaHang = MaHang;
     }
 
@@ -45,40 +46,50 @@ public class HangHoa implements Serializable{
         return TenHang;
     }
 
-    public void setTenHang(String TenHang) {
+    public void setTenHang(String LoaiSanPham) {
         this.TenHang = TenHang;
     }
 
-    public Date getNgaySuDung() {
-        return NgaySuDung;
+    public String getLoaiSanPham() {
+        return LoaiSanPham;
     }
 
-    public void setNgaySuDung(Date NgaySuDung) {
-        this.NgaySuDung = NgaySuDung;
+    public void setLoaiSanPham(String LoaiSanPham) {
+        this.LoaiSanPham = LoaiSanPham;
     }
 
-    public Date getHanSuDung() {
-        return HanSuDung;
+    public int getGiaNhap() {
+        return GiaNhap;
     }
 
-    public void setHanSuDung(Date HanSuDung) {
-        this.HanSuDung = HanSuDung;
+    public void setGiaNhap(int GiaNhap) {
+        this.GiaNhap = GiaNhap;
     }
 
-    public String getXuatSu() {
-        return XuatSu;
-    }
-
-    public void setXuatSu(String XuatSu) {
-        this.XuatSu = XuatSu;
-    }
-
-    public Double getGiaBan() {
+    public int getGiaBan() {
         return GiaBan;
     }
 
-    public void setGiaBan(Double GiaBan) {
+    public void setGiaBan(int GiaBan) {
         this.GiaBan = GiaBan;
     }
+
+    public String getNhaCungCap() {
+        return NhaCungCap;
+    }
+
+    public void setNhaCungCap(String NhaCungCap) {
+        this.NhaCungCap = NhaCungCap;
+    }
+
+    public int getSoLuong() {
+        return SoLuong;
+    }
+
+    public void setSoLuong(int SoLuong) {
+        this.SoLuong = SoLuong;
+    }
+
+    
 
 }

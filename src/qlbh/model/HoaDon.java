@@ -12,51 +12,76 @@ import java.util.Date;
  *
  * @author Steven
  */
-public class HoaDon implements Serializable{
-    private int MaHD;
-    private Date NgayLap;
-    private String NhanVienLap;
-    private Double ThanhTien;
+public class HoaDon implements Serializable {
+    
+    private String MaHD;
+    private int SoHoaDon;
+    private Date NgayLapHD;
+    private String MaNV;
+    private String MaKH;
+    private int TongTien;
+
+    public HoaDon(String MaHD, Date NgayLapHD, String MaNV, String MaKH, int TongTien, int SoHoaDon) {
+        this.MaHD = MaHD;
+        this.NgayLapHD = NgayLapHD;
+        this.SoHoaDon = SoHoaDon;
+        this.MaNV = MaNV;
+        this.MaKH = MaKH;
+        this.TongTien = TongTien;
+    }
 
     public HoaDon() {
     }
 
-    public HoaDon(int MaHD, Date NgayLap, String NhanVienLap, Double ThanhTien) {
-        this.MaHD = MaHD;
-        this.NgayLap = NgayLap;
-        this.NhanVienLap = NhanVienLap;
-        this.ThanhTien = ThanhTien;
+    public int getSoHoaDon() {
+        return SoHoaDon;
     }
 
-    public int getMaHD() {
+    public void setSoHoaDon(int SoHoaDon) {
+        this.SoHoaDon = SoHoaDon;
+    }
+    
+    
+
+    public String getMaHD() {
         return MaHD;
     }
 
-    public void setMaHD(int MaHD) {
+    public void setMaHD(String MaHD) {
         this.MaHD = MaHD;
     }
 
-    public Date getNgayLap() {
-        return NgayLap;
+    public Date getNgayLapHD() {
+        return NgayLapHD;
     }
 
-    public void setNgayLap(Date NgayLap) {
-        this.NgayLap = NgayLap;
+    public void setNgayLapHD(Date NgayLapHD) {
+        this.NgayLapHD = NgayLapHD;
     }
 
-    public String getNhanVienLap() {
-        return NhanVienLap;
+    public String getMaNV() {
+        return MaNV;
     }
 
-    public void setNhanVienLap(String NhanVienLap) {
-        this.NhanVienLap = NhanVienLap;
+    public void setMaNV(String MaNV) {
+        this.MaNV = MaNV;
     }
 
-    public Double getThanhTien() {
-        return ThanhTien;
+    public String getMaKH() {
+        return MaKH;
     }
 
-    public void setThanhTien(Double ThanhTien) {
-        this.ThanhTien = ThanhTien;
+    public void setMaKH(String MaKH) {
+        this.MaKH = MaKH;
     }
+
+    public int getTongTien() {
+        return TongTien;
+    }
+
+    public void setTongTien(int TongTien) {
+        this.TongTien = TongTien;
+    }
+    
+    
 }

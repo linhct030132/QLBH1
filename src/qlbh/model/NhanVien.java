@@ -14,13 +14,13 @@ import java.util.Date;
  */
 public class NhanVien implements Serializable {
 
-    private int MaNV;
+    private String MaNV;
 
-    public int getMaNV() {
+    public String getMaNV() {
         return MaNV;
     }
 
-    public void setMaNV(int MaNV) {
+    public void setMaNV(String MaNV) {
         this.MaNV = MaNV;
     }
     private String TenNV;

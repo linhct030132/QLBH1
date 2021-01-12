@@ -5,6 +5,7 @@
  */
 package qlbh.DAO;
 
+import java.sql.ResultSet;
 import java.util.List;
 import qlbh.model.HangHoa;
 
@@ -13,8 +14,9 @@ import qlbh.model.HangHoa;
  * @author Steven
  */
 public interface HangHoaDAO {
+    
 
     public List<HangHoa> getList();
 
-    public int createOrUpdate(HangHoa hh);
+    public String createOrUpdate(HangHoa hh);
 }

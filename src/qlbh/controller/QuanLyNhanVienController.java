@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -39,27 +40,29 @@ public class QuanLyNhanVienController {
     private JPanel jpnView;
     private JButton jbtnAdd;
     private JTextField jtfSearch;
+    private JButton jbtnDelete;
 
     private NhanVienServices nhanVienServices = null;
-    
+
     private ClassTableModel classTableModel = null;
 
-    private final String[] listColumn = {"STT", "Mã Nhân Viên",  "Họ Và Tên", "Giới Tính", "Ngày Sinh",
+    private String[] listColumn = {"STT", "Mã Nhân Viên", "Họ Và Tên", "Giới Tính", "Ngày Sinh",
         "Địa Chỉ", "SĐT", "Tình Trạng"};
 
     private TableRowSorter<TableModel> row = null;
 
-    public QuanLyNhanVienController(JPanel jpnView, JButton jbtnAdd, JTextField jtfSearch) {
+    public QuanLyNhanVienController(JPanel jpnView, JButton jbtnAdd, JTextField jtfSearch, JButton jbtnDelete) {
         this.jpnView = jpnView;
         this.jbtnAdd = jbtnAdd;
         this.jtfSearch = jtfSearch;
-        
+        this.jbtnDelete = jbtnDelete;
+
         this.nhanVienServices = new NhanVienServicesImp();
-          
+
         this.classTableModel = new ClassTableModel();
     }
 
-    public void setDateToTable() {
+    public void setDataToTable() {
         List<NhanVien> listItem = nhanVienServices.getList();
         DefaultTableModel model = classTableModel.setDefaultTableModelNV(listItem, listColumn);
         JTable table = new JTable(model);
@@ -107,13 +110,14 @@ public class QuanLyNhanVienController {
         jpnView.validate();
         jpnView.repaint();
 
-        table.getColumnModel().getColumn(0).setMinWidth(0);
-        table.getColumnModel().getColumn(0).setMaxWidth(0);
-        table.getColumnModel().getColumn(0).setPreferredWidth(0);
+        //Chỉnh sỉze cột
+        table.getColumnModel().getColumn(0).setMaxWidth(60);
+        table.getColumnModel().getColumn(0).setMinWidth(60);
+        table.getColumnModel().getColumn(0).setPreferredWidth(60);
 
-        table.getColumnModel().getColumn(1).setMinWidth(80);
-        table.getColumnModel().getColumn(1).setMaxWidth(80);
-        table.getColumnModel().getColumn(1).setPreferredWidth(80);
+        table.getColumnModel().getColumn(3).setMaxWidth(80);
+        table.getColumnModel().getColumn(3).setMinWidth(80);
+        table.getColumnModel().getColumn(3).setPreferredWidth(80);
 
         table.addMouseListener(new MouseAdapter() {
             @Override
@@ -125,14 +129,14 @@ public class QuanLyNhanVienController {
                     System.out.println(selectedRowIndex);
 
                     NhanVien nv = new NhanVien();
-                    nv.setMaNV((int)model.getValueAt(selectedRowIndex, 1));
+                    nv.setMaNV(model.getValueAt(selectedRowIndex, 1).toString());
                     nv.setTenNV(model.getValueAt(selectedRowIndex, 2).toString());
                     nv.setNgaySinh((Date) model.getValueAt(selectedRowIndex, 4));
-                    nv.setGioiTinh( model.getValueAt(selectedRowIndex, 3).toString().equalsIgnoreCase("Nam")); 
-                    nv.setSDT(model.getValueAt(selectedRowIndex, 6) != null
-                            ? model.getValueAt(selectedRowIndex, 6).toString() : "");
-                    nv.setDiaChi(null != model.getValueAt(selectedRowIndex, 5)
+                    nv.setGioiTinh(model.getValueAt(selectedRowIndex, 3).toString().equalsIgnoreCase("Nam"));
+                    nv.setSDT(model.getValueAt(selectedRowIndex, 5) != null
                             ? model.getValueAt(selectedRowIndex, 5).toString() : "");
+                    nv.setDiaChi(null != model.getValueAt(selectedRowIndex, 6)
+                            ? model.getValueAt(selectedRowIndex, 6).toString() : "");
                     nv.setTinhTrang((boolean) model.getValueAt(selectedRowIndex, 7));
 
                     NhanVienFrm frm = new NhanVienFrm(nv);
@@ -148,6 +152,30 @@ public class QuanLyNhanVienController {
     }
 
     public void setEvents() {
+        jbtnDelete.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                DefaultTableModel model = new DefaultTableModel();
+                JTable table = new JTable(model);
+
+                 model = (DefaultTableModel) table.getModel();
+                int selectedRowIndex = table.getSelectedRow();
+                System.out.println(selectedRowIndex);
+
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                jbtnDelete.setBackground(new Color(0, 200, 83));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                jbtnDelete.setBackground(new Color(100, 221, 23));
+            }
+
+        });
         jbtnAdd.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -168,7 +196,9 @@ public class QuanLyNhanVienController {
                 jbtnAdd.setBackground(new Color(100, 221, 23));
             }
 
-        });               
-        
+        }); 
+
     }
+
+
 }

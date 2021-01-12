@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import qlbh.model.NhanVien;
@@ -19,15 +20,18 @@ public class NhanVienDAOimp implements NhanVienDAO {
     @Override
     public List<NhanVien> getList() {
 
+        Connection conn = null;
+        Statement ps = null;
+            
         try {
-            Connection conn = ConnectToSQL.getConnection();
+            conn = ConnectToSQL.getConnection();
             String sql = "Select * from tb_NhanVien";
             List<NhanVien> list = new ArrayList<>();
-            PreparedStatement ps = (PreparedStatement) conn.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            ps = conn.createStatement();
+            ResultSet rs = ps.executeQuery(sql);
             while (rs.next()) {
                 NhanVien nv = new NhanVien();
-                nv.setMaNV(rs.getInt("MaNV"));
+                nv.setMaNV(rs.getString("MaNV"));
                 nv.setTenNV(rs.getString("TenNV"));
                 nv.setGioiTinh(rs.getBoolean("GioiTinh"));
                 nv.setDiaChi(rs.getString("DiaChi"));
@@ -45,52 +49,58 @@ public class NhanVienDAOimp implements NhanVienDAO {
         }
         return null;
     }
+    
+    
 
     @Override
-    public int createOrUpdate(NhanVien nv) {
+    public String createOrUpdate(NhanVien nv) {
         try {
             Connection conn = ConnectToSQL.getConnection();
-            String sql = "INSERT INTO tb_NhanVien(MaNV, TenNV, GioiTinh, NgaySinh, SDT, DiaChi, TinhTrang) "
-                    + "VALUES(?, ?, ?, ?, ?, ?, ?)   ";
-            PreparedStatement ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, nv.getMaNV());
-            ps.setString(2, nv.getTenNV());
+            String sql = "INSERT INTO tb_NhanVien(MaNV, TenNV,GioiTinh, NgaySinh, DiaChi,SDT, TinhTrang) "
+                    + "VALUES(?, ?, ?, ?, ?, ?, ?) "
+                    + " ON DUPLICATE KEY UPDATE MaNV = VALUES(MaNV) ,TenNV=VALUES(TenNV), GioiTinh=VALUES(GioiTinh), NgaySinh=VALUES(NgaySinh),DiaChi=VALUES(DiaChi), SDT=VALUES(SDT), TinhTrang=VALUES(TinhTrang);";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, nv.getMaNV());
+            ps.setString(2, nv.getTenNV()); 
             ps.setDate(4, new Date(nv.getNgaySinh().getTime()));
             ps.setBoolean(3, nv.getGioiTinh());
-            ps.setString(5, nv.getSDT());
-            ps.setString(6, nv.getDiaChi());
+            ps.setString(6, nv.getSDT());
+            ps.setString(5, nv.getDiaChi());
             ps.setBoolean(7, nv.getTinhTrang());
-            ps.execute();
-            ResultSet rs = ps.getGeneratedKeys();
-            int generatedKey = 1;
-            if (rs.next()) {
-                generatedKey = rs.getInt(1);
-            }
+            ps.executeUpdate();
+//            ResultSet rs = ps.getGeneratedKeys();
+//            String generatedKey = null;
+//            if(rs.next()){
+//                generatedKey = rs.getString(1);
+//            }
             ps.close();
             conn.close();
-            return generatedKey;
+//            return generatedKey;
+            getList();
+         } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public String delete(NhanVien nv){
+         try {
+            Connection conn = ConnectToSQL.getConnection();
+            String sql = "DELETE FROM Table WHERE MaNV = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, nv.getMaNV());
+            ps.execute();
+            ps.close();
+            conn.close();
+            getList();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return 0;
+        return null;
     }
-
-//    public int delete(NhanVien nv){
-//         try {
-//            Connection conn = ConnectToSQL.getConnection();
-//            String sql = "DELETE FROM Table WHERE TenNV = ";
-//            PreparedStatement ps = conn.prepareStatement(sql);
-//            
-//            ps.close();
-//            conn.close();
-//           
-//        } catch (Exception ex) {
-//            ex.printStackTrace();
-//        }
-//        return 0;
-//    }
     public static void main(String[] args) {
         NhanVienDAO nhanVienDAO = new NhanVienDAOimp();
         System.out.println(nhanVienDAO.getList());
     }
+
 }

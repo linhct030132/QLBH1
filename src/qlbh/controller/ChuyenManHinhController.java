@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import qlbh.beans.DanhMucBeans;
@@ -58,13 +59,13 @@ public class ChuyenManHinhController {
         private String kind;
         private JPanel jpnItem;
         private JLabel jlbItem;
+        private JFrame node2;
 
         public LabelEvent(JPanel node, String kind, JPanel jpnItem, JLabel jlbItem) {
             this.node = node;
             this.kind = kind;
             this.jpnItem = jpnItem;
             this.jlbItem = jlbItem;
-        
         }
 
       
@@ -102,6 +103,7 @@ public class ChuyenManHinhController {
             }
             root.removeAll();
             root.setLayout(new BorderLayout());
+           
             root.add(node);
             root.validate();
             root.repaint();

@@ -27,8 +27,13 @@ public class NhanVienServicesImp implements NhanVienServices{
     }
 
     @Override
-    public int createOrUpdate(NhanVien nv) {
+    public String createOrUpdate(NhanVien nv) {
          return nhanVienDAO.createOrUpdate(nv);
+    }
+    
+    @Override
+    public String delete(NhanVien nv) {
+         return nhanVienDAO.delete(nv);
     }
     
 }

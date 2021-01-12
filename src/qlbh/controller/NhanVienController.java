@@ -6,10 +6,10 @@
 package qlbh.controller;
 
 import com.toedter.calendar.JDateChooser;
+import qlbh.controller.QuanLyNhanVienController;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Date;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 import qlbh.model.NhanVien;
 import qlbh.services.NhanVienServices;
 import qlbh.services.NhanVienServicesImp;
+import qlbh.view.NhanVienFrm;
 
 /**
  *
@@ -61,36 +62,46 @@ public class NhanVienController {
 
     public void setView(NhanVien nv) {
         this.nv = nv;
-        txtMaNV.setText("" + nv.getMaNV());
+        txtMaNV.setText( nv.getMaNV());
         txtName.setText(nv.getTenNV());
-        jdcDate.setDate(nv.getNgaySinh());     //NullPointer????
+        jdcDate.setDate(nv.getNgaySinh());
+        try {
+            if (nv.getGioiTinh()) {
+                jrdNam.setSelected(true);
+            } else {
+                jrdNu.setSelected(true);
+            }
+            cbTinhTrang.setSelected(nv.getTinhTrang());
+        } catch (Exception e) {
+        }
         txtSDT.setText(nv.getSDT());
         jtaDiaChi.setText(nv.getDiaChi());
-     }
+        setEvents();
+    }
 
     public void setEvents() {
         btnSave.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (txtName.getText().length() == 0 ) {
+                if (txtName.getText().length() == 0) {
                     jlbMsg.setText("Vui lòng nhập dữ liệu bắt buộc");
                 } else {
-                    nv.setTenNV(txtName.getText().trim());
+                    nv.setMaNV(txtMaNV.getText().toString());
+                    nv.setTenNV(txtName.getText().trim().toString());
                     nv.setNgaySinh(jdcDate.getDate());
-                    nv.setSDT(txtSDT.getText());
-                    nv.setDiaChi(jtaDiaChi.getText());
+                    nv.setSDT(txtSDT.getText().toString());
+                    nv.setDiaChi(jtaDiaChi.getText().toString());
                     nv.setGioiTinh(jrdNam.isSelected());
                     nv.setTinhTrang(cbTinhTrang.isSelected());
-                    if (showDialog()) {
-                        int lastId = nhanVienServices.createOrUpdate(nv);
-                        if (lastId != 0) {
-                            nv.setMaNV(lastId);
-                            txtMaNV.setText("#" + nv.getMaNV());
-                            jlbMsg.setText("Xử lý cập nhật dữ liệu thành công!");
-                        } else {
-                            jlbMsg.setText("Có lỗi xảy ra, vui lòng thử lại!");
-                        }
+                    
+                    if (txtMaNV.getText() != null || txtMaNV.getText().length() == 0) {
+                        nhanVienServices.createOrUpdate(nv);
+                        nhanVienServices.getList();
+                        jlbMsg.setText("Xử lý cập nhật dữ liệu thành công!");
+                    } else {
+                        jlbMsg.setText("Có lỗi xảy ra, vui lòng thử lại!");
                     }
+
                 }
             }
 
@@ -105,7 +116,7 @@ public class NhanVienController {
             }
 
         });
-  
+
     }
 
     private boolean showDialog() {
@@ -113,7 +124,5 @@ public class NhanVienController {
                 "Bạn muốn cập nhật dữ liệu hay không?", "Thông báo", JOptionPane.YES_NO_OPTION);
         return dialogResult == JOptionPane.YES_OPTION;
     }
-
-        
 
 }

@@ -21,7 +21,6 @@ public class MainFrm extends javax.swing.JFrame {
      */
     public MainFrm() {
         initComponents();
-        setResizable(false);
         setLocationRelativeTo(null);
         ChuyenManHinhController controller = new ChuyenManHinhController(jpnView);
         controller.setView(jpnHeThong, jlbHeThong);
@@ -73,6 +72,7 @@ public class MainFrm extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Quản Lý Bán Hàng");
 
         jpnView.setDoubleBuffered(false);
         jpnView.setEnabled(false);
@@ -82,7 +82,7 @@ public class MainFrm extends javax.swing.JFrame {
         jpnView.setLayout(jpnViewLayout);
         jpnViewLayout.setHorizontalGroup(
             jpnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 957, Short.MAX_VALUE)
+            .addGap(0, 889, Short.MAX_VALUE)
         );
         jpnViewLayout.setVerticalGroup(
             jpnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,7 +107,7 @@ public class MainFrm extends javax.swing.JFrame {
             .addGroup(jpnTitleLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 680, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
@@ -195,7 +195,7 @@ public class MainFrm extends javax.swing.JFrame {
             jpnKhachHangLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnKhachHangLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jlbKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                .addComponent(jlbKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jpnKhachHangLayout.setVerticalGroup(
@@ -239,7 +239,7 @@ public class MainFrm extends javax.swing.JFrame {
         jlbHoaDon.setForeground(new java.awt.Color(255, 255, 255));
         jlbHoaDon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/qlbh/images/baseline_content_paste_black_18dp.png"))); // NOI18N
-        jlbHoaDon.setText("Quản Lý Hóa Đơn");
+        jlbHoaDon.setText("Quản Lý Đơn Hàng");
 
         javax.swing.GroupLayout jpnHoaDonLayout = new javax.swing.GroupLayout(jpnHoaDon);
         jpnHoaDon.setLayout(jpnHoaDonLayout);
@@ -298,7 +298,7 @@ public class MainFrm extends javax.swing.JFrame {
             jpnTraCuuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnTraCuuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jlbTraCuu, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                .addComponent(jlbTraCuu, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jpnTraCuuLayout.setVerticalGroup(
@@ -346,14 +346,14 @@ public class MainFrm extends javax.swing.JFrame {
         jpnRoot.setLayout(jpnRootLayout);
         jpnRootLayout.setHorizontalGroup(
             jpnRootLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnHeThong, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-            .addComponent(jpnNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-            .addComponent(jpnKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-            .addComponent(jpnHangHoa, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+            .addComponent(jpnHeThong, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+            .addComponent(jpnNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+            .addComponent(jpnKhachHang, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+            .addComponent(jpnHangHoa, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
             .addComponent(jpnHoaDon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jpnThongKe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jpnTraCuu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jpnHelp, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+            .addComponent(jpnHelp, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
             .addGroup(jpnRootLayout.createSequentialGroup()
                 .addGap(80, 80, 80)
                 .addComponent(jButton1)
@@ -389,7 +389,7 @@ public class MainFrm extends javax.swing.JFrame {
             .addComponent(jpnTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpnRoot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpnRoot, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -450,27 +450,27 @@ public class MainFrm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jlbHangHoa;
-    private javax.swing.JLabel jlbHeThong;
-    private javax.swing.JLabel jlbHelp;
-    private javax.swing.JLabel jlbHoaDon;
-    private javax.swing.JLabel jlbKhachHang;
-    private javax.swing.JLabel jlbNhanVien;
-    private javax.swing.JLabel jlbThongKe;
-    private javax.swing.JLabel jlbTraCuu;
-    private javax.swing.JPanel jpnHangHoa;
-    private javax.swing.JPanel jpnHeThong;
-    private javax.swing.JPanel jpnHelp;
-    private javax.swing.JPanel jpnHoaDon;
-    private javax.swing.JPanel jpnKhachHang;
-    private javax.swing.JPanel jpnNhanVien;
-    private javax.swing.JPanel jpnRoot;
-    private javax.swing.JPanel jpnThongKe;
-    private javax.swing.JPanel jpnTitle;
-    private javax.swing.JPanel jpnTraCuu;
-    private javax.swing.JPanel jpnView;
+    javax.swing.JButton jButton1;
+    javax.swing.JLabel jLabel1;
+    javax.swing.JLabel jLabel2;
+    javax.swing.JLabel jlbHangHoa;
+    javax.swing.JLabel jlbHeThong;
+    javax.swing.JLabel jlbHelp;
+    javax.swing.JLabel jlbHoaDon;
+    javax.swing.JLabel jlbKhachHang;
+    javax.swing.JLabel jlbNhanVien;
+    javax.swing.JLabel jlbThongKe;
+    javax.swing.JLabel jlbTraCuu;
+    javax.swing.JPanel jpnHangHoa;
+    javax.swing.JPanel jpnHeThong;
+    javax.swing.JPanel jpnHelp;
+    javax.swing.JPanel jpnHoaDon;
+    javax.swing.JPanel jpnKhachHang;
+    javax.swing.JPanel jpnNhanVien;
+    javax.swing.JPanel jpnRoot;
+    javax.swing.JPanel jpnThongKe;
+    javax.swing.JPanel jpnTitle;
+    javax.swing.JPanel jpnTraCuu;
+    javax.swing.JPanel jpnView;
     // End of variables declaration//GEN-END:variables
 }

@@ -14,8 +14,8 @@ public class NhanVienJPanel extends javax.swing.JPanel {
     
     public NhanVienJPanel() {
         initComponents();
-        QuanLyNhanVienController controller = new QuanLyNhanVienController(jpnView, jbtnAdd, jtfSearch);
-        controller.setDateToTable();
+        QuanLyNhanVienController controller = new QuanLyNhanVienController(jpnView, jbtnAdd, jtfSearch, jbtnDelete);
+        controller.setDataToTable();
         controller.setEvents();
     }
 
@@ -31,6 +31,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
         jtfSearch = new javax.swing.JTextField();
         jbtnAdd = new javax.swing.JButton();
         jpnView = new javax.swing.JPanel();
+        jbtnDelete = new javax.swing.JButton();
 
         jtfSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,6 +54,11 @@ public class NhanVienJPanel extends javax.swing.JPanel {
             .addGap(0, 340, Short.MAX_VALUE)
         );
 
+        jbtnDelete.setBackground(new java.awt.Color(76, 175, 80));
+        jbtnDelete.setText("Xóa Nhân Viên");
+        jbtnDelete.setBorder(null);
+        jbtnDelete.setPreferredSize(new java.awt.Dimension(67, 31));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -60,9 +66,11 @@ public class NhanVienJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jtfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 307, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
                 .addComponent(jbtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(66, 66, 66))
+                .addGap(48, 48, 48)
+                .addComponent(jbtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -74,7 +82,8 @@ public class NhanVienJPanel extends javax.swing.JPanel {
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbtnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jpnView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(17, Short.MAX_VALUE))
@@ -88,6 +97,7 @@ public class NhanVienJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jbtnAdd;
+    private javax.swing.JButton jbtnDelete;
     private javax.swing.JPanel jpnView;
     private javax.swing.JTextField jtfSearch;
     // End of variables declaration//GEN-END:variables
